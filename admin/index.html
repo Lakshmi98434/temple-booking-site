@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple Admin</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loginView" class="login-wrap">
+  <div class="login-card">
+    <h2>Admin Login</h2>
+    <p>Temple management portal — separate from the public site.</p>
+    <div id="loginErr" class="err"></div>
+    <label>Username</label>
+    <input type="text" id="loginUser">
+    <label>Password</label>
+    <input type="password" id="loginPass">
+    <button class="btn" style="width:100%;" onclick="doLogin()">Log In</button>
+  </div>
+</div>
+
+<div id="dashView" class="shell" style="display:none;">
+  <div class="sidebar">
+    <div class="brand" id="adminBrand">Temple Admin</div>
+    <a onclick="showPanel('bookings')" id="tab-bookings" class="active">Bookings</a>
+    <a onclick="showPanel('poojas')" id="tab-poojas">Poojas</a>
+    <a onclick="showPanel('announcements')" id="tab-announcements">Announcements</a>
+    <a onclick="showPanel('gallery')" id="tab-gallery">Gallery</a>
+    <a onclick="showPanel('info')" id="tab-info">Temple Info</a>
+  </div>
+  <div class="main">
+    <div class="topbar">
+      <h2 id="panelTitle">Bookings</h2>
+      <button class="logout" onclick="logout()">Log out</button>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="panel active" id="panel-bookings">
+      <div class="stat-row" id="statRow"></div>
+      <table>
+        <thead><tr><th>Ref ID</th><th>Name</th><th>Pooja</th><th>Date / Slot</th><th>Phone</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="bookingsBody"><tr><td colspan="7" class="muted">Loading…</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- POOJAS -->
+    <div class="panel" id="panel-poojas">
+      <div class="form-row">
+        <div class="field"><label>Name</label><input id="pName"></div>
+        <div class="field"><label>Price (₹)</label><input id="pPrice" type="number"></div>
+      </div>
+      <div class="field"><label>Description</label><input id="pDesc"></div>
+      <button class="btn" onclick="addPooja()">Add Pooja</button>
+      <div class="card-list" id="poojaList"></div>
+    </div>
+
+    <!-- ANNOUNCEMENTS -->
+    <div class="panel" id="panel-announcements">
+      <div class="form-row">
+        <div class="field"><label>Date</label><input id="aDate" type="date"></div>
+        <div class="field"><label>Title</label><input id="aTitle"></div>
+      </div>
+      <div class="field"><label>Message</label><input id="aMsg"></div>
+      <button class="btn" onclick="addAnnouncement()">Add Announcement</button>
+      <div class="card-list" id="announceList2"></div>
+    </div>
+
+    <!-- GALLERY -->
+    <div class="panel" id="panel-gallery">
+      <p class="muted">Upload the photo to your shared Google Drive folder first, set sharing to "Anyone with the link", then paste the link here.</p>
+      <div class="form-row">
+        <div class="field"><label>Title</label><input id="gTitle"></div>
+        <div class="field"><label>Google Drive Link</label><input id="gLink"></div>
+      </div>
+      <button class="btn" onclick="addGallery()">Add Photo</button>
+      <div class="card-list" id="galleryList2"></div>
+    </div>
+
+    <!-- TEMPLE INFO -->
+    <div class="panel" id="panel-info">
+      <div class="field"><label>Temple Name</label><input id="iName"></div>
+      <div class="field"><label>Timings</label><input id="iTimings"></div>
+      <div class="field"><label>Address</label><input id="iAddress"></div>
+      <div class="field"><label>Phone</label><input id="iPhone"></div>
+      <div class="field"><label>Email</label><input id="iEmail"></div>
+      <div class="field"><label>Google Maps Embed URL (optional)</label><input id="iMap"></div>
+      <button class="btn" onclick="saveInfo()">Save Temple Info</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="../config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
